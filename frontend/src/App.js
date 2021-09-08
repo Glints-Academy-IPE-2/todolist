@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+// import css
+import './App.css';
 // components
 import Navbar from './components/Navbar';
 import AddTodoModal from './components/AddTodoModal';
@@ -8,20 +10,7 @@ export default function App() {
   // changing body background color
   document.body.style = 'background: #20212C;';
 
-  const [todos, setTodos] = useState([
-    {
-      id: Math.round(Math.random() * 1000),
-      taskName: 'the explanation presented is very helpful in my understanding of the how actually to explore',
-      description: 'Makan-makan',
-      isCompleted: false,
-    },
-    {
-      id: Math.round(Math.random() * 1000),
-      taskName: 'Bersih',
-      description: 'Bersih-Bersih',
-      isCompleted: false,
-    },
-  ])
+  const [todos, setTodos] = useState([]);
 
   return (
     <>
