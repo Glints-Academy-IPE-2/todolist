@@ -29,8 +29,16 @@ export default function Todos({ todos, setTodos }) {
   return (
     <>
       {todos.map((todo) => (
-        <MDBCard key={todo.id} className='mx-auto my-4 ' style={{ maxWidth: '22rem', backgroundColor: '#272833', }}>
-          <MDBCardBody className='' style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
+        <MDBCard 
+          key={todo.id} 
+          className='mx-auto my-4 ' 
+          style={{ 
+            maxWidth: '22rem', 
+            backgroundColor: '#272833',
+            maxHeight: '5.4rem'
+          }}
+        >
+          <MDBCardBody style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
             <MDBCardText style={{ color: '#D8D8D8', display: 'flex', alignItems: 'baseline'}}>
             <MDBCheckbox 
               name='flexCheck' 
