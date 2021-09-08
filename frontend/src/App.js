@@ -11,7 +11,7 @@ export default function App() {
   const [todos, setTodos] = useState([
     {
       id: Math.round(Math.random() * 1000),
-      taskName: 'Makan',
+      taskName: 'the explanation presented is very helpful in my understanding of the how actually to explore',
       description: 'Makan-makan',
       isCompleted: false,
     },

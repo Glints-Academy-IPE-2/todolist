@@ -13,6 +13,8 @@ import { MDBBtn,
   MDBInputGroupElement,
 } from 'mdb-react-ui-kit';
 
+import cat from '../img/cat.jpg';
+
 export default function AddTodoModal({todos, setTodos}) {
   // MDB Library
   const [centredModal, setCentredModal] = useState(false);
@@ -44,7 +46,6 @@ export default function AddTodoModal({todos, setTodos}) {
     setInputTaskName('');
     setInputDescription('');
     toggleShow();
-    console.log(todos);
   }
 
   return (
@@ -106,6 +107,7 @@ export default function AddTodoModal({todos, setTodos}) {
                     Upload
                   </MDBInputGroupText>
                 </MDBInputGroup>
+                <img className="w-50" src={cat} alt='cat' />
               </div>
            </div>
           </MDBModalBody>
