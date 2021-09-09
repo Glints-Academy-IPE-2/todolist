@@ -3,12 +3,11 @@ import {
   MDBCard,
   MDBCardBody,
   MDBCardText,
-  MDBCheckbox,
   MDBIcon,
   MDBBtn,
 } from "mdb-react-ui-kit";
 
-export default function User({ users, setUser }) {
+function ViewUsers({ users, setUser }) {
   const statusChangeHandler = (id) => {
     const temp = users.map((user) => {
       if (user.id !== id) {
@@ -25,7 +24,7 @@ export default function User({ users, setUser }) {
     setUser(temp);
   };
   return (
-    <>
+    <div>
       {users.map((user) => (
         <MDBCard
           key={user.id}
@@ -82,6 +81,8 @@ export default function User({ users, setUser }) {
           </MDBCardBody>
         </MDBCard>
       ))}
-    </>
+    </div>
   );
 }
+
+export default ViewUsers;

@@ -8,19 +8,17 @@ import {
   MDBModalBody,
   MDBModalFooter,
   MDBIcon,
-  MDBInput,
-  MDBInputGroup,
-  MDBInputGroupText,
-  MDBInputGroupElement,
+  MDBInput
 } from "mdb-react-ui-kit";
 
-export default function AddTodoModal({ todos, setTodos }) {
+import folder from "../images/folder-yellow.png";
+
+function AddTodoModal({ todos, setTodos }) {
   // changing body background color
   // document.body.style = "background: #20212C;";
 
   // MDB Library
   const [centredModal, setCentredModal] = useState(false);
-
   const toggleShow = () => setCentredModal(!centredModal);
 
   // Code
@@ -48,7 +46,6 @@ export default function AddTodoModal({ todos, setTodos }) {
     setInputTaskName("");
     setInputDescription("");
     toggleShow();
-    console.log(todos);
   };
 
   return (
@@ -82,8 +79,8 @@ export default function AddTodoModal({ todos, setTodos }) {
                 <span className="ms-2">Add task</span>
               </p>
             </MDBModalHeader>
-            <MDBModalBody>
-              <div className="row ps-5">
+            <MDBModalBody className="px-5">
+              <div className="row">
                 <div className="col-md-5">
                   <label
                     htmlFor="task-name"
@@ -109,20 +106,30 @@ export default function AddTodoModal({ todos, setTodos }) {
                     onChange={inputDescriptionHandler}
                   />
                 </div>
-                <div className="col-md-5 offset-md-1">
-                  <label
-                    htmlFor="task-name"
-                    className="form-label"
-                    style={{ color: "#D8D8D8" }}
-                  >
-                    Task name
-                  </label>
-                  <MDBInputGroup className="mb-3">
-                    <MDBInputGroupElement type="file" id="inputGroupFile02" />
-                    <MDBInputGroupText tag="label" htmlFor="inputGroupFile02">
-                      Upload
-                    </MDBInputGroupText>
-                  </MDBInputGroup>
+                <div className="col-md-5 offset-md-1 my-3">
+                  <div className="box-upload">
+                    <div className="image-upload text-center">
+                      <label htmlFor="upload-input">
+                        <img
+                          src={folder}
+                          draggable={false}
+                          alt="folder"
+                          style={{ width: 80, height: 80 }}
+                        />
+                        <p style={{ color: "#666" }}>
+                          Click to upload image
+                          <p style={{ color: "#D94C4C", fontSize: "12px" }}>
+                            Coming soon*
+                          </p>
+                        </p>
+                      </label>
+                      <input
+                        id="upload-input"
+                        type="file"
+                        accept=".jpg, .gif, .jpeg, .png"
+                      />
+                    </div>
+                  </div>
                 </div>
               </div>
             </MDBModalBody>
@@ -137,7 +144,7 @@ export default function AddTodoModal({ todos, setTodos }) {
                 style={{ backgroundColor: "#D94C4C", color: "#272833" }}
                 onClick={addTaskHandler}
               >
-                Add task
+                Add
               </MDBBtn>
             </MDBModalFooter>
           </MDBModalContent>
@@ -146,3 +153,5 @@ export default function AddTodoModal({ todos, setTodos }) {
     </>
   );
 }
+
+export default AddTodoModal;

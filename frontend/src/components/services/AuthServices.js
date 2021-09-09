@@ -1,11 +1,11 @@
 import axios from "axios";
-const baseUrl = `http://localhost:4000/user`;
+const baseUrl = `http://localhost:4000/users`;
 
 export const AuthService = {
   register,
   login,
   logout,
-  getCurrentUser
+  getCurrentUser,
 };
 
 function register(params) {
@@ -17,7 +17,6 @@ function login(params) {
     if (res.data.token) {
       localStorage.setItem("user", JSON.stringify(res.data));
     }
-    return res.data;
   });
 }
 

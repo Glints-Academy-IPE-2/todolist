@@ -1,26 +1,18 @@
 import React, { useState } from "react";
+// import css
+import "./styles.css";
+// components
 import AddTodoModal from "./AddTodoModal";
 import Todos from "./Todos";
-import "./styles.css";
 
 const Home = () => {
-  const [todos, setTodos] = useState([
-    {
-      id: Math.round(Math.random() * 1000),
-      taskName: "Makan",
-      description: "Makan-makan",
-      isCompleted: false,
-    },
-    {
-      id: Math.round(Math.random() * 1000),
-      taskName: "Bersih",
-      description: "Bersih-Bersih",
-      isCompleted: false,
-    },
-  ]);
+  // changing body background color
+  // document.body.style = 'background: #20212C;';
+  
+  const [todos, setTodos] = useState([]);
 
   return (
-    <div style={{backgroundColor: "#20212C"}}>
+    <div style={{ backgroundColor: "#20212C", flex: 1, height: "81vh" }}>
       <AddTodoModal todos={todos} setTodos={setTodos} />
       <Todos todos={todos} setTodos={setTodos} />
     </div>
