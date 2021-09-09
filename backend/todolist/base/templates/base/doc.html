@@ -1,0 +1,6 @@
+<p>api/ ^task/$ [name='task-list']
+api/ ^task\.(?P<format>[a-z0-9]+)/?$ [name='task-list']
+api/ ^task/(?P<pk>[^/.]+)/$ [name='task-detail']
+api/ ^task/(?P<pk>[^/.]+)\.(?P<format>[a-z0-9]+)/?$ [name='task-detail']
+api/ ^$ [name='api-root']
+api/ ^\.(?P<format>[a-z0-9]+)/?$ [name='api-root']</p>
