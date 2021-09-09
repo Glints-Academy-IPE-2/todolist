@@ -8,17 +8,15 @@ import {MDBBtn,
   MDBModalFooter,
   MDBIcon,
   MDBInput,
-  MDBInputGroup,
-  MDBInputGroupElement,
 } from 'mdb-react-ui-kit';
 
-export default function AddTodoModal({todos, setTodos}) {
-  // MDB Library
-  const [centredModal, setCentredModal] = useState(false);
+import folder from '../img/folder.png';
 
+export default function AddTodoModal({todos, setTodos}) {
+  // Add Modal
+  const [centredModal, setCentredModal] = useState(false);
   const toggleShow = () => setCentredModal(!centredModal);
 
-  // Code
   const [inputTaskName, setInputTaskName] = useState('');
   const [inputDescription, setInputDescription] = useState('');
 
@@ -72,8 +70,8 @@ export default function AddTodoModal({todos, setTodos}) {
               <span className='ms-2'>Add task</span>
             </p>
           </MDBModalHeader>
-          <MDBModalBody>
-           <div className='row ps-5'>
+          <MDBModalBody className='px-5'>
+           <div className='row'>
              <div className='col-md-5'>
               <label htmlFor='task-name' className='form-label' style={{color: '#D8D8D8', }}>
                   Task name
@@ -94,10 +92,22 @@ export default function AddTodoModal({todos, setTodos}) {
                 onChange={inputDescriptionHandler}
               />
               </div>
-              <div className='col-md-5 offset-md-1'>
-                <MDBInputGroup className='mb-3'>
-                  <MDBInputGroupElement type='file' id='inputGroupFile02' />
-                </MDBInputGroup>
+              <div className='col-md-5 offset-md-1 my-3'>
+                <div className='box-upload'>
+                  <div className='image-upload text-center'>
+                    <label htmlFor='upload-input'>
+                      <img src={folder} draggable={false} alt='folder' style={{width: 80, height: 80}} />
+                      <p style={{color: '#666'}}>Click to upload image
+                        <p style={{color: '#D94C4C', fontSize:'12px'}}>Coming soon*</p>
+                      </p>
+                    </label>
+                    <input 
+                      id='upload-input'
+                      type='file' 
+                      accept='.jpg, .gif, .jpeg, .png'
+                    />
+                  </div>
+                </div>
               </div>
            </div>
           </MDBModalBody>

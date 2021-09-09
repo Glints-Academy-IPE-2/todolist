@@ -13,12 +13,10 @@ import {
   MDBModalBody,
   MDBModalFooter,
   MDBInput,
-  MDBInputGroup,
-  MDBInputGroupElement,
-  MDBInputGroupText,
 } from 'mdb-react-ui-kit';
 
 import todo from '../img/todo.png';
+import folder from '../img/folder.png';
 
 export default function Todos({todos, setTodos}) {
 
@@ -225,15 +223,21 @@ export default function Todos({todos, setTodos}) {
                 />
                 </div>
                 <div className='col-md-5 offset-md-1'>
-                  <label htmlFor='task-name' className='form-label' style={{color: '#D8D8D8'}}>
-                      Task name
-                  </label>
-                  <MDBInputGroup className='mb-3'>
-                    <MDBInputGroupElement type='file' id='inputGroupFile02' />
-                    <MDBInputGroupText tag='label' htmlFor='inputGroupFile02'>
-                      Upload
-                    </MDBInputGroupText>
-                  </MDBInputGroup>
+                  <div className='box-upload'>
+                    <div className='image-upload text-center'>
+                      <label htmlFor='upload-input'>
+                        <img src={folder} draggable={false} alt='folder' style={{width: 80, height: 80}} />
+                        <p style={{color: '#666'}}>Click to upload image
+                          <p style={{color: '#D94C4C', fontSize:'12px'}}>Coming soon*</p>
+                        </p>
+                      </label>
+                      <input 
+                        id='upload-input'
+                        type='file' 
+                        accept='.jpg, .gif, .jpeg, .png'
+                      />
+                    </div>
+                  </div>
                 </div>
             </div>
             </MDBModalBody>
