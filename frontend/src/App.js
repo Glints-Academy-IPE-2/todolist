@@ -1,38 +1,30 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import React from "react";
+import { BrowserRouter as Router, Switch } from "react-router-dom";
+import { PrivateRoute, PublicRoute } from "./components/Route";
 // components
 import Login from "./components/user/Login";
 import Register from "./components/user/Register";
-import Navbar from './components/Navbar';
-import Home from './components/todo/Home';
-
+import Navbar from "./components/Navbar";
+import Home from "./components/todo/Home";
+import Footer from "./components/Footer";
+import viewUsers from "./admin/ViewUsers";
 
 export default function App() {
-
-  
-
   return (
     <div>
       {/* <AddTodoModal todos={todos} setTodos={setTodos}/>
       <Todos todos={todos} setTodos={setTodos}/> */}
-      <Navbar />
-
-      {/* <Navbar /> */}
       <Router>
-      <div className="App">
-        <div className="content">
-          <Switch>
-            {/* <Route exact path="/home" component={Navbar} /> */}
-            <Route exact path="/home" component={Home}/>
-            <Route exact path="/register" component={Register}/>
-            <Route exact path="/login" component={Login}/>
-          </Switch>
-        </div>
-      </div>
-    </Router>
+        <Navbar />
+        <Switch>
+          {/* <Route exact path="/home" component={Navbar} /> */}
+          <PrivateRoute exact path="/" component={Home} />
+          <PrivateRoute exact path="/user" component={viewUsers}/>
+          <PublicRoute exact path="/register" component={Register} />
+          <PublicRoute exact path="/login" component={Login} />
+        </Switch>
+      </Router>
+      <Footer />
     </div>
   );
 }
-
-
-

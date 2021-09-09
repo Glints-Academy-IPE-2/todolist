@@ -1,29 +1,29 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import {Form} from "react-bootstrap";
 import cover from "../images/cover.png";
+import { AuthService } from "../services/AuthServices";
 
-const Register = (props) => {
-  const [state, setState] = useState({
-    email: "",
-    password: "",
-  });
+const Register = () => {
+  const [error, setError] = useState();
 
-  const handleChange = (e) => {
-    const { id, value } = e.target;
-    setState((prevState) => ({
-      ...prevState,
-      [id]: value,
-    }));
-  };
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
 
-  const handleSubmitClick = (e) => {
-    e.preventDefault();
-    if (state.password === state.confirmPassword) {
-      //   sendDetailsToServer
-      
-    } else {
-      props.showError("Passwords do not match");
-    }
+  const onSubmit = (data) => {
+    AuthService.register(data)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        setError(err.response.data.message);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
   };
 
   return (
@@ -33,11 +33,11 @@ const Register = (props) => {
           <div className="col col-xl-10">
             <div className="card" style={{ borderRadius: "1rem" }}>
               <div className="row g-0">
-                <div className="col-md-6 col-lg-5 d-none d-md-block">
+                <div className="col-md-6 col-lg-5 d-md-flex justify-content-center align-content-center h-70 w-70" style={{height: "300px", width: "300px"}}>
                   <img
                     src={cover}
                     alt="login form"
-                    className="img-fluid"
+                    // className="img-fluid"
                     style={{ borderRadius: "1rem 0 0 1rem" }}
                   />
                 </div>
@@ -57,53 +57,56 @@ const Register = (props) => {
                       >
                         Make a new account
                       </h5>
+                      <Form onSubmit={handleSubmit(onSubmit)}>
+                        <div className="form-outline mb-2">
+                          <input
+                            type="email"
+                            className="form-control form-control-lg"
+                            placeholder="Enter your email"
+                            {...register("email", { required: "Required" })}
+                            inValid={errors.email}
+                            required
+                          />
+                          <label className="form-label">Email address</label>
+                        </div>
 
-                      <div className="form-outline mb-2">
-                        <input
-                          type="email"
-                          className="form-control form-control-lg"
-                          id="email"
-                          placeholder="Enter your email"
-                          value={state.email}
-                          onChange={handleChange}
-                          required
-                        />
-                        <label className="form-label">Email address</label>
-                      </div>
+                        <div className="form-outline mb-2">
+                          <input
+                            type="password"
+                            className="form-control form-control-lg"
+                            placeholder={"Enter your password"}
+                            {...register("password", { required: "Required" })}
+                            isInvalid={errors.password}
+                            required
+                          />
+                          <label className="form-label">Password</label>
+                        </div>
 
-                      <div className="form-outline mb-2">
-                        <input
-                          type="password"
-                          className="form-control form-control-lg"
-                          id="password"
-                          placeholder={"Enter your password"}
-                          value={state.password}
-                          onChange={handleChange}
-                          required
-                        />
-                        <label className="form-label">Password</label>
-                      </div>
+                        <div className="form-outline mb-2">
+                          <input
+                            type="password"
+                            className="form-control form-control-lg"
+                            placeholder="Re-enter your password"
+                            {...register("confirmPassword", {
+                              required: "Required",
+                              validate: (value) =>
+                                value === watch("password") ||
+                                "Passwords don't match.",
+                            })}
+                            required
+                          />
+                          <label className="form-label">Confirm Password</label>
+                        </div>
 
-                      <div className="form-outline mb-2">
-                        <input
-                          type="password"
-                          className="form-control form-control-lg"
-                          id="confirmPassword"
-                          placeholder="Re-enter your password"
-                          required
-                        />
-                        <label className="form-label">Confirm Password</label>
-                      </div>
-
-                      <div className="pt-1 mb-2">
-                        <button
-                          className="btn btn-dark btn-lg btn-block"
-                          type="button"
-                          onClick={handleSubmitClick}
-                        >
-                          Register
-                        </button>
-                      </div>
+                        <div className="pt-1 mb-2">
+                          <button
+                            className="btn btn-dark btn-lg btn-block"
+                            type="submit"
+                          >
+                            Register
+                          </button>
+                        </div>
+                      </Form>
 
                       <p
                         className="mb-1 mt-3 pb-lg-2"

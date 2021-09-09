@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import AddTodoModal from "./AddTodoModal";
 import Todos from "./Todos";
+import "./styles.css";
 
 const Home = () => {
   const [todos, setTodos] = useState([
@@ -17,7 +18,7 @@ const Home = () => {
       isCompleted: false,
     },
   ]);
-  
+
   return (
     <div style={{backgroundColor: "#20212C"}}>
       <AddTodoModal todos={todos} setTodos={setTodos} />

@@ -1,16 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
+import { useForm } from "react-hook-form";
+import { Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { AuthService } from "../services/AuthServices";
 import cover from "../images/cover.png";
 // import logo from "../images/logo.png";
 
-const styles = {
-  height: "100%",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-};
+const Login = ({ history }) => {
+  const [error, setError] = useState();
 
-const Login = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = (data) => {
+    AuthService.login(data)
+      .then((res) => {
+        history.push("/");
+        window.location.reload();
+      })
+      .catch((err) => setError(err.response.data.message));
+  };
+
   return (
     <section className="vh-110" style={{ backgroundColor: "#20212C" }}>
       <div className="container py-5 h-100">
@@ -18,17 +31,16 @@ const Login = () => {
           <div className="col col-xl-10">
             <div className="card" style={{ borderRadius: "1rem" }}>
               <div className="row g-0">
-                  {/* Styles not working */}
+                {/* Styles not working */}
                 <div
-                  className="col-md-6 col-lg-5 d-none d-md-block"
-                  style={styles}
+                  className="col-md-6 col-lg-5 d-md-flex justify-content-center align-content-center h-70 w-70"
+                  style={{ height: "300px", width: "300px" }}
                 >
                   <img
                     // src="https://mdbootstrap.com/img/Photos/new-templates/bootstrap-login-form/img1.jpg"
                     src={cover}
                     alt="login form"
                     className="img-fluid"
-                    style={{}}
                   />
                 </div>
                 <div className="col-md-6 col-lg-7 d-flex align-items-center">
@@ -47,34 +59,39 @@ const Login = () => {
                       >
                         Sign into your account
                       </h5>
-                      <div className="form-outline mb-4">
-                        <input
-                          type="email"
-                          className="form-control form-control-lg"
-                          name="email"
-                          placeholder="Enter your email"
-                          required
-                        />
-                        <label className="form-label">Email address</label>
-                      </div>
-                      <div className="form-outline mb-4">
-                        <input
-                          type="password"
-                          className="form-control form-control-lg"
-                          name="password"
-                          placeholder="Enter your password"
-                          required
-                        />
-                        <label className="form-label">Password</label>
-                      </div>
-                      <div className="pt-1 mb-4">
-                        <button
-                          className="btn btn-dark btn-lg btn-block"
-                          type="button"
-                        >
-                          Login
-                        </button>
-                      </div>
+                      <Form>
+                        <div className="form-outline mb-4">
+                          <input
+                            type="email"
+                            className="form-control form-control-lg"
+                            placeholder="Enter your email"
+                            {...register("email", { required: "Required" })}
+                            isInvalid={errors.email}
+                            required
+                          />
+                          <label className="form-label">Email address</label>
+                        </div>
+                        <div className="form-outline mb-4">
+                          <input
+                            type="password"
+                            className="form-control form-control-lg"
+                            name="password"
+                            placeholder="Enter your password"
+                            {...register("password", { required: "Required" })}
+                            isInvalid={errors.password}
+                            required
+                          />
+                          <label className="form-label">Password</label>
+                        </div>
+                        <div className="pt-1 mb-4">
+                          <button
+                            className="btn btn-dark btn-lg btn-block"
+                            type="button"
+                          >
+                            Login
+                          </button>
+                        </div>
+                      </Form>
                       <a className="small text-muted" href="#!">
                         Forgot password?
                       </a>
