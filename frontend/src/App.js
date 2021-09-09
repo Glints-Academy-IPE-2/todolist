@@ -1,33 +1,38 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 // components
+import Login from "./components/user/Login";
+import Register from "./components/user/Register";
 import Navbar from './components/Navbar';
-import AddTodoModal from './components/AddTodoModal';
-import Todos from './components/Todos';
+import Home from './components/todo/Home';
+
 
 export default function App() {
-  // changing body background color
-  document.body.style = 'background: #20212C;';
 
-  const [todos, setTodos] = useState([
-    {
-      id: Math.round(Math.random() * 1000),
-      taskName: 'Makan',
-      description: 'Makan-makan',
-      isCompleted: false,
-    },
-    {
-      id: Math.round(Math.random() * 1000),
-      taskName: 'Bersih',
-      description: 'Bersih-Bersih',
-      isCompleted: false,
-    },
-  ])
+  
 
   return (
-    <>
+    <div>
+      {/* <AddTodoModal todos={todos} setTodos={setTodos}/>
+      <Todos todos={todos} setTodos={setTodos}/> */}
       <Navbar />
-      <AddTodoModal todos={todos} setTodos={setTodos}/>
-      <Todos todos={todos} setTodos={setTodos}/>
-    </>
+
+      {/* <Navbar /> */}
+      <Router>
+      <div className="App">
+        <div className="content">
+          <Switch>
+            {/* <Route exact path="/home" component={Navbar} /> */}
+            <Route exact path="/home" component={Home}/>
+            <Route exact path="/register" component={Register}/>
+            <Route exact path="/login" component={Login}/>
+          </Switch>
+        </div>
+      </div>
+    </Router>
+    </div>
   );
 }
+
+
+

@@ -9,6 +9,8 @@ import {
 } from 'mdb-react-ui-kit';
 
 export default function Todos({ todos, setTodos }) {
+  // changing body background color
+  // document.body.style = 'background: #20212C;';
 
   const statusChangeHandler = (id) => {
     const temp = todos.map((todo) => {
