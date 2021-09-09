@@ -14,10 +14,8 @@ module.exports = {
           .hash(password, 10)
           .then((hash) => {
             User.create({
-              nama: req.body.nama,
               email: req.body.email,
               password: hash,
-              telp: req.body.telp,
             })
               .then((result) => {
                 return res.status(200).json(result);
@@ -39,7 +37,7 @@ module.exports = {
           if (isMatch) {
             const payload = {
               id: result.id,
-              nama: result.nama,
+              email: result.email
             };
             const token = jwt.sign(payload, privateKey, {
               expiresIn: "7d",
@@ -82,10 +80,9 @@ module.exports = {
   updateDataById: (req, res) => {
     User.update(
       {
-        nama: req.body.nama,
+        
         email: req.body.email,
         password: req.body.password,
-        telp: req.body.telp,
       },
       { where: { id: req.params.UserId } }
     )

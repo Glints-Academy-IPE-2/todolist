@@ -1,6 +1,6 @@
 const Sequelize = require("sequelize");
 
-const db = new Sequelize("db_zeal", "root", "", {
+const db = new Sequelize("todolist", "root", "", {
   host: "localhost",
   dialect: "mysql",
 });
