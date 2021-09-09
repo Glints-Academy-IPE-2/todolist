@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   MDBCard,
   MDBCardBody,
@@ -8,6 +8,8 @@ import {
 } from "mdb-react-ui-kit";
 
 function ViewUsers({ users, setUser }) {
+  const [data, setData] = useState([]);
+
   const statusChangeHandler = (id) => {
     const temp = users.map((user) => {
       if (user.id !== id) {
