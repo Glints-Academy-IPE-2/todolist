@@ -22,5 +22,5 @@ urlpatterns = [
     path('login/', admin.site.urls),
     path('register/', admin.site.urls),
     path('user/', admin.site.urls),
-    path('todo/', admin.site.urls),
+    path('todo/', admin.site.urls)
 ]
