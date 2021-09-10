@@ -41,7 +41,7 @@ const Navbar = () => {
                 aria-disabled="true"
                 style={{ color: "white" }}
               >
-                {currentUser.nama.toUpperCase()}
+                {currentUser.nama}
               </MDBNavbarLink>
               {/* <MDBNavbarItem> */}
               <MDBBtn onClick={() => logOut()} color="primary">
